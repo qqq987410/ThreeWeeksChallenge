@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import './main.scss';
+import API from '../api';
 
 export default function Main() {
   const [count, setCount] = useState(0);
   const [cntCity, setCity] = useState('請選擇');
+  const [siteDate, setSiteData] = useState([]);
 
   const cityList = [
-    { name: '台北市', value: 'TPE' },
-    { name: '新北市', value: 'TPH' },
-    { name: '桃園市', value: 'TYC' },
-    { name: '基隆市', value: 'KLU' },
+    { name: '台北市', value: 'Taipei' },
+    { name: '新北市', value: 'NewTaipei' },
+    { name: '桃園市', value: 'Taoyuan' },
+    { name: '基隆市', value: 'Keelung' },
   ];
 
   const cityItems = cityList.map((city) => (
@@ -17,6 +19,12 @@ export default function Main() {
       {city.name}
     </option>
   ));
+
+  const getData = async () => {
+    const aaa = await API.fetchTourismByCity(cntCity);
+    setSiteData(aaa.data);
+    // console.log(aaa.data);
+  };
 
   return (
     <main>
@@ -38,6 +46,16 @@ export default function Main() {
       <select name="cities" onChange={(e) => setCity(e.target.value)}>
         {cityItems}
       </select>
+
+      <button type="button" onClick={getData}>
+        查詢景點
+      </button>
+
+      <ul>
+        {siteDate.map((site) => (
+          <li key={site.ID}>{site.Name}</li>
+        ))}
+      </ul>
     </main>
   );
 }
