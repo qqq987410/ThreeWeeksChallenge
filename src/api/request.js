@@ -6,10 +6,10 @@ import config from '../config';
 const base = 'https://ptx.transportdata.tw/MOTC/v2';
 
 function getAuthorizationHeader() {
-  const GMTString = new Date().toGMTString();
+  const UTCString = new Date().toUTCString();
   const ShaObj = new jsSHA('SHA-1', 'TEXT');
   ShaObj.setHMACKey(config.APP_KEY, 'TEXT');
-  ShaObj.update('x-date: ' + GMTString);
+  ShaObj.update('x-date: ' + UTCString);
   const HMAC = ShaObj.getHMAC('B64');
   const Authorization =
     'hmac username="' +
@@ -17,7 +17,7 @@ function getAuthorizationHeader() {
     '", algorithm="hmac-sha1", headers="x-date", signature="' +
     HMAC +
     '"';
-  return { Authorization: Authorization, 'X-Date': GMTString };
+  return { Authorization: Authorization, 'X-Date': UTCString };
 }
 
 const request = async (method, endpoint) => {

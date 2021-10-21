@@ -2,8 +2,8 @@
 import request from './request';
 
 const API = {
-  fetchTourismByCity(cityName) {
-    const endpoint = `/Tourism/ScenicSpot/${cityName}?$top=30&$format=JSON`;
+  fetchTourismByCity(cityName, num) {
+    const endpoint = `/Tourism/ScenicSpot/${cityName}?$top=${num}&$format=JSON`;
     return request('GET', endpoint);
   },
 };

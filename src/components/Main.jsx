@@ -1,59 +1,57 @@
 import { useState } from 'react';
 import './main.scss';
-import API from '../api';
+import API from '../api/index';
+import cityList from '../data/cityList';
 
 export default function Main() {
+  const [cntCity, setCity] = useState(cityList[0].value);
+  const [siteData, setSiteData] = useState([]);
   const [count, setCount] = useState(0);
-  const [cntCity, setCity] = useState('請選擇');
-  const [siteDate, setSiteData] = useState([]);
 
-  const cityList = [
-    { name: '台北市', value: 'Taipei' },
-    { name: '新北市', value: 'NewTaipei' },
-    { name: '桃園市', value: 'Taoyuan' },
-    { name: '基隆市', value: 'Keelung' },
-  ];
-
-  const cityItems = cityList.map((city) => (
+  const cityOptions = cityList.map((city) => (
     <option value={city.value} key={city.value}>
       {city.name}
     </option>
   ));
 
-  const getData = async () => {
-    const aaa = await API.fetchTourismByCity(cntCity);
-    setSiteData(aaa.data);
-    // console.log(aaa.data);
+  const getSiteData = async (num) => {
+    const rawData = await API.fetchTourismByCity(cntCity, num);
+    setSiteData(rawData.data);
+  };
+
+  const changePage = (num) => {
+    const newCount = count + num;
+    // getSiteData(count, newCount);
+    console.log(count, newCount);
+    setCount(newCount);
   };
 
   return (
     <main>
-      <div>
-        <p>{count}</p>
-        <button type="button" onClick={() => setCount(count - 1)}>
-          -1
-        </button>
-        <button type="button" onClick={() => setCount(count + 1)}>
-          +1
-        </button>
-      </div>
-
-      <p>
-        所選擇縣市為
-        {cntCity}
-      </p>
-
       <select name="cities" onChange={(e) => setCity(e.target.value)}>
-        {cityItems}
+        {cityOptions}
       </select>
 
-      <button type="button" onClick={getData}>
+      <button type="button" onClick={() => getSiteData(10)}>
         查詢景點
       </button>
 
+      <p>
+        <button type="button" onClick={() => changePage(-10)}>
+          上 10 筆
+        </button>
+        {count}
+        <button type="button" onClick={() => changePage(10)}>
+          下 10 筆
+        </button>
+      </p>
+
       <ul>
-        {siteDate.map((site) => (
-          <li key={site.ID}>{site.Name}</li>
+        {siteData.map((site, i) => (
+          <li key={site.ID}>
+            {site.Name}
+            {i}
+          </li>
         ))}
       </ul>
     </main>
