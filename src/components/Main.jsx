@@ -14,15 +14,16 @@ export default function Main() {
     </option>
   ));
 
+  const DATA_PER_PAGE = 10;
+
   const getSiteData = async (num) => {
-    const rawData = await API.fetchTourismByCity(cntCity, num);
+    const rawData = await API.fetchTourismByCity(cntCity, DATA_PER_PAGE, num);
     setSiteData(rawData.data);
   };
 
   const changePage = (num) => {
     const newCount = count + num;
-    // getSiteData(count, newCount);
-    console.log(count, newCount);
+    getSiteData(newCount * 10);
     setCount(newCount);
   };
 
@@ -32,25 +33,26 @@ export default function Main() {
         {cityOptions}
       </select>
 
-      <button type="button" onClick={() => getSiteData(10)}>
+      <button type="button" onClick={() => getSiteData(0)}>
         查詢景點
       </button>
 
       <p>
-        <button type="button" onClick={() => changePage(-10)}>
+        <button type="button" onClick={() => count > 0 && changePage(-1)}>
           上 10 筆
         </button>
+        page
         {count}
-        <button type="button" onClick={() => changePage(10)}>
+        <button type="button" onClick={() => changePage(1)}>
           下 10 筆
         </button>
       </p>
 
       <ul>
-        {siteData.map((site, i) => (
+        {siteData.map((site) => (
           <li key={site.ID}>
             {site.Name}
-            {i}
+            {/* <span>{site.ID}</span> */}
           </li>
         ))}
       </ul>
