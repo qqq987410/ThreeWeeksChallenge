@@ -17,7 +17,7 @@ export default function Main() {
   const DATA_PER_PAGE = 10;
 
   const getSiteData = async (num) => {
-    const rawData = await API.fetchTourismByCity(cntCity, DATA_PER_PAGE, num);
+    const rawData = await API.tourism.fetchScenicSpotByCity(cntCity, DATA_PER_PAGE, num);
     setSiteData(rawData.data);
   };
 
