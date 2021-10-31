@@ -3,7 +3,7 @@ import axios from 'axios';
 import jsSHA from 'jssha';
 import config from '../config';
 
-const base = 'https://ptx.transportdata.tw/MOTC/v2';
+const base = 'https://ptx.transportdata.tw/';
 
 function getAuthorizationHeader() {
   const UTCString = new Date().toUTCString();
@@ -20,8 +20,10 @@ function getAuthorizationHeader() {
   return { Authorization: Authorization, 'X-Date': UTCString };
 }
 
-const request = async (method, endpoint) => {
-  const url = `${base}${endpoint}`;
+const request = async (method, apiName, query) => {
+  const url = new URL(base);
+  url.pathname = `MOTC/v2/${apiName}`;
+  url.search = query;
   const req = { url, method, headers: getAuthorizationHeader() };
   const json = await axios(req);
   return json;
