@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './main.scss';
-import API from '../api/index';
-import cityList from '../data/cityList';
+import API from '../../api/index';
+import cityList from '../../data/cityList';
 
 export default function Main() {
   const [cntCity, setCity] = useState(cityList[0].value);
