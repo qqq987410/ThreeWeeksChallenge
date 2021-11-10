@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './main.scss';
 import API from '../../api/index';
 import cityList from '../../data/cityList';
+import Card from './Card';
 
 export default function Main() {
   const [cntCity, setCity] = useState(cityList[0].value);
@@ -48,14 +49,9 @@ export default function Main() {
         </button>
       </p>
 
-      <ul>
-        {siteData.map((site) => (
-          <li key={site.ID}>
-            {site.Name}
-            {/* <span>{site.ID}</span> */}
-          </li>
-        ))}
-      </ul>
+      <div className="cards-container">
+        <Card siteData={siteData} />
+      </div>
     </main>
   );
 }
