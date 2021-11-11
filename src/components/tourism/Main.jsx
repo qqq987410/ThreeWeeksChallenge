@@ -3,11 +3,13 @@ import './main.scss';
 import API from '../../api/index';
 import cityList from '../../data/cityList';
 import Card from './Card';
+import Map from './Map';
 
 export default function Main() {
   const [cntCity, setCity] = useState(cityList[0].value);
   const [siteData, setSiteData] = useState([]);
   const [count, setCount] = useState(0);
+  const [position, setPosition] = useState([25.056400299072266, 121.50760650634766]);
 
   const cityOptions = cityList.map((city) => (
     <option value={city.value} key={city.value}>
@@ -15,7 +17,7 @@ export default function Main() {
     </option>
   ));
 
-  const DATA_PER_PAGE = 10;
+  const DATA_PER_PAGE = 12;
 
   const getSiteData = async (num) => {
     const rawData = await API.tourism.fetchScenicSpotByCity(cntCity, DATA_PER_PAGE, num);
@@ -24,12 +26,13 @@ export default function Main() {
 
   const changePage = (num) => {
     const newCount = count + num;
-    getSiteData(newCount * 10);
+    getSiteData(newCount * DATA_PER_PAGE);
     setCount(newCount);
   };
 
   return (
     <main>
+      <Map position={position} />
       <select name="cities" onChange={(e) => setCity(e.target.value)}>
         {cityOptions}
       </select>
@@ -40,17 +43,18 @@ export default function Main() {
 
       <p>
         <button type="button" onClick={() => count > 0 && changePage(-1)}>
-          上 10 筆
+          上一頁
         </button>
         page
         {count}
         <button type="button" onClick={() => changePage(1)}>
-          下 10 筆
+          下一頁
         </button>
       </p>
 
       <div className="cards-container">
-        <Card siteData={siteData} />
+        <Card siteData={siteData} setPosition={setPosition} />
+
       </div>
     </main>
   );

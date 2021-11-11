@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import './card.scss';
 
 export default function Card(props) {
-  const { siteData } = props;
+  const { siteData, setPosition } = props;
+  const positionArr = (obj) => {
+    setPosition([obj.PositionLat, obj.PositionLon]);
+  };
 
   return siteData.map((site, idx) => {
     const pictureStyle = { backgroundImage: `url('${site.Picture.PictureUrl1}')` };
 
     return (
-      <div className="cards-wrapper" key={site.ID}>
+      <div className="cards-wrapper" key={site.ID} onClick={() => positionArr(site.Position)} aria-hidden="true">
         <div className="picture" style={pictureStyle}>
           <span>{site.Name}</span>
         </div>
