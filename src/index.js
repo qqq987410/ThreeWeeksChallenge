@@ -7,23 +7,25 @@ import Main from './components/tourism/Main';
 import Bike from './components/bike/Bike';
 import Bus from './components/bus/Bus';
 import reportWebVitals from './reportWebVitals';
+import './styles/index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <li>
-        <Link to="/">index</Link>
-      </li>
-      <li>
-        <Link to="/tourism">Tourism</Link>
-      </li>
-      <li>
-        <Link to="/bike">Bike</Link>
-      </li>
-      <li>
-        <Link to="/bus">Bus</Link>
-      </li>
-
+      <ul>
+        <li>
+          <Link to="/">index</Link>
+        </li>
+        <li>
+          <Link to="/tourism">Tourism</Link>
+        </li>
+        <li>
+          <Link to="/bike">Bike</Link>
+        </li>
+        <li>
+          <Link to="/bus">Bus</Link>
+        </li>
+      </ul>
       <Switch>
         <Route path="/tourism">
           <Main />

@@ -1,14 +1,24 @@
 @import '../../styles/index.scss';
 
 main {
+  height: 90vh;
   color: $color-main_01;
+  display: flex;
+  > div {
+    width: 50%;
+    overflow: hidden;
+    margin: 1rem;
+  }
   span {
     margin: 0 0.5rem;
-    color: blue;
   }
 }
+.mapContainer {
+  border-radius: 10px;
+  position: relative;
+}
 
-.cards-container {
+.cardsContainer {
   // display: flex;
   // flex-wrap: wrap;
   width: max-content;
