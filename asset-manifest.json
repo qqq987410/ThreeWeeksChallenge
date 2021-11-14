@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.ca9816b2.chunk.css",
-    "main.js": "/static/js/main.5b1b7084.chunk.js",
-    "main.js.map": "/static/js/main.5b1b7084.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.72496237.js",
-    "runtime-main.js.map": "/static/js/runtime-main.72496237.js.map",
-    "static/css/2.da98c186.chunk.css": "/static/css/2.da98c186.chunk.css",
-    "static/js/2.d9805dac.chunk.js": "/static/js/2.d9805dac.chunk.js",
-    "static/js/2.d9805dac.chunk.js.map": "/static/js/2.d9805dac.chunk.js.map",
-    "static/js/3.410180ed.chunk.js": "/static/js/3.410180ed.chunk.js",
-    "static/js/3.410180ed.chunk.js.map": "/static/js/3.410180ed.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.da98c186.chunk.css.map": "/static/css/2.da98c186.chunk.css.map",
-    "static/css/main.ca9816b2.chunk.css.map": "/static/css/main.ca9816b2.chunk.css.map",
-    "static/js/2.d9805dac.chunk.js.LICENSE.txt": "/static/js/2.d9805dac.chunk.js.LICENSE.txt",
-    "static/media/filter.scss": "/static/media/search.e4e815e8.svg"
+    "main.css": "./static/css/main.c0dad83b.chunk.css",
+    "main.js": "./static/js/main.1c8dd0e7.chunk.js",
+    "main.js.map": "./static/js/main.1c8dd0e7.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.a507ec2d.js",
+    "runtime-main.js.map": "./static/js/runtime-main.a507ec2d.js.map",
+    "static/css/2.da98c186.chunk.css": "./static/css/2.da98c186.chunk.css",
+    "static/js/2.d9805dac.chunk.js": "./static/js/2.d9805dac.chunk.js",
+    "static/js/2.d9805dac.chunk.js.map": "./static/js/2.d9805dac.chunk.js.map",
+    "static/js/3.410180ed.chunk.js": "./static/js/3.410180ed.chunk.js",
+    "static/js/3.410180ed.chunk.js.map": "./static/js/3.410180ed.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/2.da98c186.chunk.css.map": "./static/css/2.da98c186.chunk.css.map",
+    "static/css/main.c0dad83b.chunk.css.map": "./static/css/main.c0dad83b.chunk.css.map",
+    "static/js/2.d9805dac.chunk.js.LICENSE.txt": "./static/js/2.d9805dac.chunk.js.LICENSE.txt",
+    "static/media/filter.scss": "./static/media/search.e4e815e8.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.72496237.js",
+    "static/js/runtime-main.a507ec2d.js",
     "static/css/2.da98c186.chunk.css",
     "static/js/2.d9805dac.chunk.js",
-    "static/css/main.ca9816b2.chunk.css",
-    "static/js/main.5b1b7084.chunk.js"
+    "static/css/main.c0dad83b.chunk.css",
+    "static/js/main.1c8dd0e7.chunk.js"
   ]
 }
