@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './filter.scss';
 import cityList from '../../data/cityList';
 import API from '../../api/index';
+import { getPage } from '../../ducks/page';
 
 export default function Filter(props) {
   const { cntCity, setCity, cntDist, setDist, setSiteData } = props;
@@ -19,6 +20,7 @@ export default function Filter(props) {
 
     const rawData = await API.tourism.fetchScenicSpotByCity(cntCity, obj);
     setSiteData(rawData.data);
+    getPage();
   };
 
   return (

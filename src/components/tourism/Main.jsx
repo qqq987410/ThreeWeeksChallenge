@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import cx from 'classnames';
 import styles from './main.module.scss';
 import API from '../../api/index';
 import cityList from '../../data/cityList';
@@ -9,7 +10,8 @@ import InfoCard from './InfoCard';
 import Map from './Map';
 import Filter from './Filter';
 
-import getPathName from '../../utils/urlUtils';
+import { getPathName } from '../../utils/urlUtils';
+import { categoryList } from '../../utils/constantUtils';
 
 export default function Main() {
   const [cntCity, setCity] = useState(cityList[0].value);
@@ -53,7 +55,7 @@ export default function Main() {
         <div className={styles.navbar}>
           <PageChooser />
           <PageTitle />
-          {pathName === 'tourism' && (
+          {(pathName === 'tourism' || pathName === '') && (
             <Filter
               cntCity={cntCity}
               setCity={setCity}
@@ -64,7 +66,17 @@ export default function Main() {
           )}
         </div>
 
-        <div className="category-bar">Category</div>
+        <div className={styles.categoryBar}>
+          {categoryList.map((item) => {
+            const categoryStyle = cx(`${styles.category}`, item.type);
+            return (
+              <div className={categoryStyle} key={item.type}>
+                <div className={styles.icon}>11</div>
+                <div className={styles.name}>{item.displayName}</div>
+              </div>
+            );
+          })}
+        </div>
 
         <div className={styles.cardsContainer}>
           <Card siteData={siteData} setPosition={setPosition} setInfo={setInfo} />

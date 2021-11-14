@@ -1,3 +1,3 @@
-const getPathName = () => window.location.pathname.split('/')[1];
+export const getPathName = () => window.location.pathname.split('/')[1];
 
-export default getPathName;
+export const getTest = () => console.log('Test');
