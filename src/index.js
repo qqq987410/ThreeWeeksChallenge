@@ -14,7 +14,7 @@ import './styles/index.scss';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router>
         <Switch>
           <Route path="/ThreeWeeksChallenge/tourism">
             <Main />
@@ -25,7 +25,7 @@ ReactDOM.render(
           <Route path="/ThreeWeeksChallenge/bus">
             <Bus />
           </Route>
-          <Route path="/ThreeWeeksChallenge" exact>
+          <Route path="/ThreeWeeksChallenge">
             <App />
           </Route>
         </Switch>
