@@ -16,16 +16,16 @@ ReactDOM.render(
     <Provider store={store}>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
-          <Route path="/tourism">
+          <Route path="/ThreeWeeksChallenge/tourism">
             <Main />
           </Route>
-          <Route path="/bike">
+          <Route path="/ThreeWeeksChallenge/bike">
             <Bike />
           </Route>
-          <Route path="/bus">
+          <Route path="/ThreeWeeksChallenge/bus">
             <Bus />
           </Route>
-          <Route path="/" exact>
+          <Route path="/ThreeWeeksChallenge" exact>
             <App />
           </Route>
         </Switch>
