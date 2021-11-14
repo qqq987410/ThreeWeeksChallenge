@@ -55,7 +55,7 @@ export default function Main() {
         <div className={styles.navbar}>
           <PageChooser />
           <PageTitle />
-          {(pathName === 'tourism' || pathName === '') && (
+          {pathName === 'tourism' && (
             <Filter
               cntCity={cntCity}
               setCity={setCity}
