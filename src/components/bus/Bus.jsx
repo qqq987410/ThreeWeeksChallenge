@@ -1,3 +1,12 @@
+import PageChooser from '../tourism/PageChooser';
+
 export default function Bus() {
-  return <h2>Bus</h2>;
+  return (
+    <div className="App">
+      <div className="app">
+        Bus page
+        <PageChooser />
+      </div>
+    </div>
+  );
 }

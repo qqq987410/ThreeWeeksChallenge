@@ -1,3 +1,12 @@
+import PageChooser from '../tourism/PageChooser';
+
 export default function Bike() {
-  return <h2>Bike</h2>;
+  return (
+    <div className="App">
+      <div className="app">
+        Bike page
+        <PageChooser />
+      </div>
+    </div>
+  );
 }
