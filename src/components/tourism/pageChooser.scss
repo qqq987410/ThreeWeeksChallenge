@@ -1,0 +1,23 @@
+@import '../../styles/index.scss';
+
+.page-chooser {
+  height: 20%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  border-bottom: 1px solid #ffffff;
+  margin: 0 30px;
+
+  a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    &:hover {
+      cursor: pointer;
+    }
+    &:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+}
