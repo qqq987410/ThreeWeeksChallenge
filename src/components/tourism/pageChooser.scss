@@ -1,12 +1,10 @@
-@import '../../styles/index.scss';
-
 .page-chooser {
   height: 20%;
   display: flex;
   justify-content: end;
   align-items: center;
   border-bottom: 1px solid #ffffff;
-  margin: 0 30px;
+  margin: 0 2rem;
 
   a {
     text-decoration: none;

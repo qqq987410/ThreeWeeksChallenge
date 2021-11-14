@@ -3,9 +3,13 @@ import styles from './main.module.scss';
 import API from '../../api/index';
 import cityList from '../../data/cityList';
 import Card from './Card';
-// import PageChooser from './PageChooser';
+import PageChooser from './PageChooser';
+import PageTitle from './PageTitle';
 import InfoCard from './InfoCard';
 import Map from './Map';
+import Filter from './Filter';
+
+import getPathName from '../../utils/urlUtils';
 
 export default function Main() {
   const [cntCity, setCity] = useState(cityList[0].value);
@@ -16,7 +20,7 @@ export default function Main() {
   const [count, setCount] = useState(0);
   const [position, setPosition] = useState([25.083, 121.555]);
 
-  const distsOptions = cityList.find((el) => el.value === cntCity);
+  const districtsOptions = cityList.find((el) => el.value === cntCity);
 
   const DATA_PER_PAGE = 12;
 
@@ -36,40 +40,31 @@ export default function Main() {
     setCount(newCount);
   };
 
+  const pathName = getPathName();
+
   return (
     <main>
       <div className={styles.mapContainer}>
         <Map position={position} siteData={siteData} />
-        <InfoCard info={info} dists={distsOptions.districts} />
+        <InfoCard info={info} districts={districtsOptions.districts} />
       </div>
-      <div>
-        <div className={styles.filter}>
-          <select
-            name="cities"
-            onChange={(e) => {
-              setCity(e.target.value);
-              setDist(0);
-            }}
-          >
-            {cityList.map((city) => (
-              <option value={city.value} key={city.value}>
-                {city.name}
-              </option>
-            ))}
-          </select>
-          <select name="districts" onChange={(e) => setDist(e.target.value)}>
-            <option value="">不限</option>
-            {distsOptions.districts.map((dist) => (
-              <option value={dist.zip} key={dist.zip}>
-                {dist.name}
-              </option>
-            ))}
-          </select>
 
-          <button type="button" onClick={() => getSiteData(0)}>
-            查詢景點
-          </button>
+      <div className={styles.main}>
+        <div className={styles.navbar}>
+          <PageChooser />
+          <PageTitle />
+          {pathName === 'tourism' && (
+            <Filter
+              cntCity={cntCity}
+              setCity={setCity}
+              cntDist={cntDist}
+              setDist={setDist}
+              setSiteData={setSiteData}
+            />
+          )}
         </div>
+
+        <div className="category-bar">Category</div>
 
         <div className={styles.cardsContainer}>
           <Card siteData={siteData} setPosition={setPosition} setInfo={setInfo} />
@@ -94,18 +89,6 @@ export default function Main() {
   );
 }
 
-// <div className="tourism-container">
-//   <div className="map">Map</div>
-//   <main>
-//     <div className="nav-bar">
-//       <PageChooser />
-//       <div className="page-title">
-//         <span className="english-title">Travel In Taiwan</span>
-//         <span className="chinese-title">悠遊台灣</span>
-//       </div>
-//     </div>
-
-//     <div className="category-bar">Category</div>
 //     <div className="filter">
 //       <div className="choose-city">選擇城市</div>
 //       <select name="cities" onChange={(e) => setCity(e.target.value)}>
@@ -114,20 +97,3 @@ export default function Main() {
 //       <button type="button" onClick={() => getSiteData(0)}>
 //         查詢景點
 //       </button>
-
-//       <p>
-//         <button type="button" onClick={() => count > 0 && changePage(-1)}>
-//           上 10 筆
-//         </button>
-//         page
-//         {count}
-//         <button type="button" onClick={() => changePage(1)}>
-//           下 10 筆
-//         </button>
-//       </p>
-//     </div>
-//     <div className="cards-container">
-//       <Card siteData={siteData} />
-//     </div>
-//   </main>
-// </div>

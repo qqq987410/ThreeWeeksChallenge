@@ -1,0 +1,20 @@
+.page-title {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 0 0 30px;
+
+  span {
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+  .english-title {
+    font-size: 45px;
+  }
+
+  .chinese-title {
+    font-size: 25px;
+  }
+}

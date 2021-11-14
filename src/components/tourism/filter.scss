@@ -1,0 +1,39 @@
+.filter {
+  width: 16rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+
+  .chooseCity {
+    color: #ffffff80;
+    font-size: 14px;
+  }
+
+  select {
+    background: transparent;
+    border-radius: 10px;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .search {
+    width: 23px;
+    height: 23px;
+    padding: 2px 5px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    background-image: url('../../images/search.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
