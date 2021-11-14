@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-// import App from './App';
+import App from './App';
 import store from './store';
 import Main from './components/tourism/Main';
 import Bike from './components/bike/Bike';
@@ -14,7 +14,7 @@ import './styles/index.scss';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route path="/tourism">
             <Main />
@@ -26,7 +26,7 @@ ReactDOM.render(
             <Bus />
           </Route>
           <Route path="/">
-            <Main />
+            <App />
           </Route>
         </Switch>
       </Router>
