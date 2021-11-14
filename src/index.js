@@ -25,7 +25,7 @@ ReactDOM.render(
           <Route path="/bus">
             <Bus />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <App />
           </Route>
         </Switch>
