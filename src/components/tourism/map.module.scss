@@ -1,4 +1,31 @@
 .map {
   height: 100%;
   width: 100%;
+  .icon {
+    filter: drop-shadow(0 1px 5px rgba(0, 0, 0, 0.4));
+    div {
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+      background: rgb(68, 68, 255);
+      margin: auto;
+      color: white;
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      position: relative;
+    }
+    div::after {
+      content: ' ';
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 16px solid rgb(68, 68, 255);
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, 0%);
+    }
+  }
 }
