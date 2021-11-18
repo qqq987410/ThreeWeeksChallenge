@@ -1,17 +1,2 @@
 @import './mixins';
 @import './variables';
-
-* {
-  box-sizing: border-box;
-  font-family: $font-family-main;
-  margin: 0;
-  padding: 0;
-}
-
-.App {
-  .app {
-    a {
-      color: black;
-    }
-  }
-}
