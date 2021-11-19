@@ -2,35 +2,35 @@
 import styles from './infoCard.module.scss';
 
 export default function InfoCard(props) {
-  const { info, districts } = props;
-  const distName = districts.find((el) => el.zip === info?.ZipCode);
-  const pictureStyle = { backgroundImage: `url('${info?.Picture.PictureUrl1}')` };
+  const { infoData, districts } = props;
+  const distName = districts.find((el) => el.zip === infoData?.ZipCode);
+  const pictureStyle = { backgroundImage: `url('${infoData?.Picture.PictureUrl1}')` };
 
   return (
     <div className={styles.infoCard}>
       <div className={styles.photoWrap}>
         <div className={styles.photo} style={pictureStyle} />
-        <p>{info?.Picture.PictureDescription1}</p>
+        <p>{infoData?.Picture.PictureDescription1}</p>
       </div>
       <div className={styles.info}>
         <div className={styles.subTitle}>
           <p>
-            {info?.City}
+            {infoData?.City}
             {distName?.name}
           </p>
-          <span>{info?.Class1}</span>
+          <span>{infoData?.Class1}</span>
         </div>
-        <div className={styles.title}>{info?.Name}</div>
+        <div className={styles.title}>{infoData?.Name}</div>
         <div className={styles.contact}>
           <p>
-            <span>{info?.Phone}</span>
-            <span>{info?.Address}</span>
+            <span>{infoData?.Phone}</span>
+            <span>{infoData?.Address}</span>
           </p>
-          <p>{info?.WebsiteUrl}</p>
+          <p>{infoData?.WebsiteUrl}</p>
         </div>
         <div className={styles.description}>
           <p>景點介紹</p>
-          {info?.DescriptionDetail}
+          {infoData?.DescriptionDetail}
         </div>
       </div>
     </div>

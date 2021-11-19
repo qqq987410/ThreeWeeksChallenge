@@ -11,6 +11,8 @@ const attribution =
   'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
 
 export default function Map(props) {
+  const { position, siteData, setInfoId } = props;
+
   const mapRef = useRef(null);
   const markerLayer = useRef(L.layerGroup());
 
@@ -19,7 +21,7 @@ export default function Map(props) {
     mapRef.current = L.map('map').setView([25.083, 121.555], 12);
     L.tileLayer(mapbox, {
       attribution,
-      maxZoom: 18,
+      maxZoom: 20,
       id: mapStyle,
       tileSize: 512,
       zoomOffset: -1,
@@ -40,23 +42,28 @@ export default function Map(props) {
   }, []);
 
   useEffect(() => {
-    if (props.siteData.length === 0) return;
+    if (siteData.length === 0) return;
     const markersLength = markerLayer.current.getLayers();
     if (markersLength.length !== 0) {
       markerLayer.current.clearLayers();
     }
 
-    props.siteData.forEach((data, i) => {
+    siteData.forEach((data, i) => {
       const lat = data.Position.PositionLat;
       const lon = data.Position.PositionLon;
-      return L.marker([lat, lon], { icon: icon(i + 1, data.ID) }).addTo(markerLayer.current);
+      return L.marker([lat, lon], { icon: icon(i + 1, data.ID) })
+        .on('click', function (e) {
+          setInfoId(i);
+          mapRef.current.setView(e.target.getLatLng(), 14);
+        })
+        .addTo(markerLayer.current);
     });
   }, [props.siteData]);
 
   useEffect(() => {
     if (!mapRef.current) return;
-    mapRef.current.flyTo(props.position, 14);
-  }, [props.position]);
+    mapRef.current.flyTo(position, 14);
+  }, [position]);
 
   return <div id="map" className={styles.map} ref={mapRef} />;
 }

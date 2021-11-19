@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import cx from 'classnames';
 import styles from './main.module.scss';
 import API from '../../api/index';
@@ -16,9 +16,8 @@ import { categoryList } from '../../utils/constantUtils';
 export default function Main() {
   const [cntCity, setCity] = useState(cityList[0].value);
   const [cntDist, setDist] = useState();
-
   const [siteData, setSiteData] = useState([]);
-  const [info, setInfo] = useState();
+  const [infoId, setInfoId] = useState(0);
   const [count, setCount] = useState(0);
   const [position, setPosition] = useState([25.083, 121.555]);
 
@@ -40,15 +39,23 @@ export default function Main() {
     const newCount = count + num;
     getSiteData(newCount * DATA_PER_PAGE);
     setCount(newCount);
+    setInfoId(0);
   };
 
   const pathName = getPathName();
 
+  // TODO: fly to first site's position when renew the siteData
+  useEffect(() => {
+    if (siteData.length === 0) return;
+    const positionObj = siteData[infoId].Position;
+    setPosition([positionObj.PositionLat, positionObj.PositionLon]);
+  }, [infoId, count]);
+
   return (
     <main>
       <div className={styles.mapContainer}>
-        <Map position={position} siteData={siteData} />
-        <InfoCard info={info} districts={districtsOptions.districts} />
+        <Map position={position} siteData={siteData} setInfoId={setInfoId} />
+        <InfoCard infoData={siteData[infoId]} districts={districtsOptions.districts} />
       </div>
 
       <div className={styles.main}>
@@ -79,7 +86,7 @@ export default function Main() {
         </div>
 
         <div className={styles.cardsContainer}>
-          <Card siteData={siteData} setPosition={setPosition} setInfo={setInfo} />
+          <Card siteData={siteData} setInfoId={setInfoId} />
         </div>
 
         <div className={styles.paging}>
