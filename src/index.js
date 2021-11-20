@@ -9,7 +9,6 @@ import Main from './components/tourism/Main';
 import Bike from './components/bike/Bike';
 import Bus from './components/bus/Bus';
 import reportWebVitals from './reportWebVitals';
-import './styles/index.scss';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import cx from 'classnames';
-import styles from './main.module.scss';
+import './main.scss';
 import API from '../../api/index';
 import cityList from '../../data/cityList';
 import Card from './Card';
@@ -46,13 +46,13 @@ export default function Main() {
 
   return (
     <main>
-      <div className={styles.mapContainer}>
+      <div className="mapContainer">
         <Map position={position} siteData={siteData} />
         <InfoCard info={info} districts={districtsOptions.districts} />
       </div>
 
-      <div className={styles.main}>
-        <div className={styles.navbar}>
+      <div className="main">
+        <div className="navbar">
           <PageChooser />
           <PageTitle />
           {pathName === 'tourism' && (
@@ -66,23 +66,23 @@ export default function Main() {
           )}
         </div>
 
-        <div className={styles.categoryBar}>
+        <div className="categoryBar">
           {categoryList.map((item) => {
-            const categoryStyle = cx(`${styles.category}`, item.type);
+            const categoryStyle = cx('category', item.type);
             return (
               <div className={categoryStyle} key={item.type}>
-                <div className={styles.icon}>11</div>
-                <div className={styles.name}>{item.displayName}</div>
+                <div className="icon" />
+                <div className="name">{item.displayName}</div>
               </div>
             );
           })}
         </div>
 
-        <div className={styles.cardsContainer}>
+        <div className="cardsContainer">
           <Card siteData={siteData} setPosition={setPosition} setInfo={setInfo} />
         </div>
 
-        <div className={styles.paging}>
+        <div className="paging">
           <button type="button" onClick={() => count > 0 && changePage(-1)}>
             上一頁
           </button>
