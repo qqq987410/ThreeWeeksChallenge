@@ -10,6 +10,7 @@ import request from './request';
 function baseFunc(cityName, ...args) {
   const apiName = [this.category, this.type, cityName].join('/');
   const query = new URLSearchParams(...args).toString();
+  console.log('AAA=', query);
   return request('GET', apiName, query);
 }
 
