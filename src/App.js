@@ -1,5 +1,6 @@
 import PageChooser from './components/tourism/PageChooser';
 import './styles/base.scss';
+import './styles/index.scss';
 
 function App() {
   return (

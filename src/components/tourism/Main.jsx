@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import cx from 'classnames';
-import styles from './main.module.scss';
+import './main.scss';
 import API from '../../api/index';
 import cityList from '../../data/cityList';
 import Card from './Card';
@@ -58,8 +58,8 @@ export default function Main() {
         <InfoCard infoData={siteData[infoId]} districts={districtsOptions.districts} />
       </div>
 
-      <div className={styles.main}>
-        <div className={styles.navbar}>
+      <div className="main">
+        <div className="navbar">
           <PageChooser />
           <PageTitle />
           {pathName === 'tourism' && (
@@ -73,13 +73,13 @@ export default function Main() {
           )}
         </div>
 
-        <div className={styles.categoryBar}>
+        <div className="categoryBar">
           {categoryList.map((item) => {
-            const categoryStyle = cx(`${styles.category}`, item.type);
+            const categoryStyle = cx('category', item.type);
             return (
               <div className={categoryStyle} key={item.type}>
-                <div className={styles.icon}>11</div>
-                <div className={styles.name}>{item.displayName}</div>
+                <div className="icon" />
+                <div className="name">{item.displayName}</div>
               </div>
             );
           })}
@@ -89,7 +89,7 @@ export default function Main() {
           <Card siteData={siteData} setInfoId={setInfoId} />
         </div>
 
-        <div className={styles.paging}>
+        <div className="paging">
           <button type="button" onClick={() => count > 0 && changePage(-1)}>
             上一頁
           </button>

@@ -41,6 +41,46 @@ main {
   .category {
     display: flex;
     align-items: center;
+
+    .icon {
+      width: 20px;
+      height: 20px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .name {
+      padding-left: 5px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.attractions {
+      .icon {
+        background-image: url('../../images/Eiffel-tower.svg');
+      }
+    }
+
+    &.tasty {
+      .icon {
+        background-image: url('../../images/Restaurant.svg');
+      }
+    }
+
+    &.activity {
+      .icon {
+        background-image: url('../../images/Confetti.svg');
+      }
+    }
+
+    &.hotel {
+      .icon {
+        background-image: url('../../images/Home.svg');
+      }
+    }
   }
 }
 
