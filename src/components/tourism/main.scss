@@ -60,25 +60,25 @@ main {
 
     &.attractions {
       .icon {
-        background-image: url('../../images/Eiffel-tower.svg');
+        background-image: url('../../images/tourism/Eiffel-tower.svg');
       }
     }
 
     &.tasty {
       .icon {
-        background-image: url('../../images/Restaurant.svg');
+        background-image: url('../../images/tourism/Restaurant.svg');
       }
     }
 
     &.activity {
       .icon {
-        background-image: url('../../images/Confetti.svg');
+        background-image: url('../../images/tourism/Confetti.svg');
       }
     }
 
     &.hotel {
       .icon {
-        background-image: url('../../images/Home.svg');
+        background-image: url('../../images/tourism/Home.svg');
       }
     }
   }
