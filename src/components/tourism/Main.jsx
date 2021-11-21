@@ -6,8 +6,7 @@ import cityList from '../../data/cityList';
 import Card from './Card';
 import PageChooser from './PageChooser';
 import PageTitle from './PageTitle';
-import InfoCard from './InfoCard';
-import Map from './Map';
+import Map from '../Map';
 import Filter from './Filter';
 
 import { getPathName } from '../../utils/urlUtils';
@@ -53,10 +52,14 @@ export default function Main() {
 
   return (
     <main>
-      <div className={styles.mapContainer}>
-        <Map position={position} siteData={siteData} setInfoId={setInfoId} />
-        <InfoCard infoData={siteData[infoId]} districts={districtsOptions.districts} />
-      </div>
+      <Map
+        position={position}
+        siteData={siteData}
+        setInfoId={setInfoId}
+        category="Tourism"
+        infoData={siteData[infoId]}
+        districts={districtsOptions.districts}
+      />
 
       <div className="main">
         <div className="navbar">
@@ -85,7 +88,7 @@ export default function Main() {
           })}
         </div>
 
-        <div className={styles.cardsContainer}>
+        <div className="cardsContainer">
           <Card siteData={siteData} setInfoId={setInfoId} />
         </div>
 
@@ -107,12 +110,3 @@ export default function Main() {
     </main>
   );
 }
-
-//     <div className="filter">
-//       <div className="choose-city">選擇城市</div>
-//       <select name="cities" onChange={(e) => setCity(e.target.value)}>
-//         {cityOptions}
-//       </select>
-//       <button type="button" onClick={() => getSiteData(0)}>
-//         查詢景點
-//       </button>
