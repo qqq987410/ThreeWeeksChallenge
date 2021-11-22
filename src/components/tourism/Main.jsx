@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import cx from 'classnames';
 import './main.scss';
 import API from '../../api/index';
@@ -6,8 +6,7 @@ import cityList from '../../data/cityList';
 import Card from './Card';
 import PageChooser from './PageChooser';
 import PageTitle from './PageTitle';
-import InfoCard from './InfoCard';
-import Map from './Map';
+import Map from '../Map';
 import Filter from './Filter';
 
 import { getPathName } from '../../utils/urlUtils';
@@ -16,9 +15,8 @@ import { categoryList } from '../../utils/constantUtils';
 export default function Main() {
   const [cntCity, setCity] = useState(cityList[0].value);
   const [cntDist, setDist] = useState();
-
   const [siteData, setSiteData] = useState([]);
-  const [info, setInfo] = useState();
+  const [infoId, setInfoId] = useState(0);
   const [count, setCount] = useState(0);
   const [position, setPosition] = useState([25.083, 121.555]);
 
@@ -40,16 +38,30 @@ export default function Main() {
     const newCount = count + num;
     getSiteData(newCount * DATA_PER_PAGE);
     setCount(newCount);
+    setInfoId(0);
   };
 
   const pathName = getPathName();
 
+  // TODO: fly to first site's position when renew the siteData
+  useEffect(() => {
+    if (siteData.length === 0) return;
+    const positionObj = siteData[infoId].Position;
+    setPosition([positionObj.PositionLat, positionObj.PositionLon]);
+  }, [infoId, count]);
+
   return (
     <main>
-      <div className="mapContainer">
-        <Map position={position} siteData={siteData} />
-        <InfoCard info={info} districts={districtsOptions.districts} />
-      </div>
+
+      <Map
+        position={position}
+        siteData={siteData}
+        setInfoId={setInfoId}
+        category="Tourism"
+        infoData={siteData[infoId]}
+        districts={districtsOptions.districts}
+      />
+
 
       <div className="main">
         <div className="navbar">
@@ -79,7 +91,7 @@ export default function Main() {
         </div>
 
         <div className="cardsContainer">
-          <Card siteData={siteData} setPosition={setPosition} setInfo={setInfo} />
+          <Card siteData={siteData} setInfoId={setInfoId} />
         </div>
 
         <div className="paging">
@@ -100,12 +112,3 @@ export default function Main() {
     </main>
   );
 }
-
-//     <div className="filter">
-//       <div className="choose-city">選擇城市</div>
-//       <select name="cities" onChange={(e) => setCity(e.target.value)}>
-//         {cityOptions}
-//       </select>
-//       <button type="button" onClick={() => getSiteData(0)}>
-//         查詢景點
-//       </button>

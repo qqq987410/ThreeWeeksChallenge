@@ -1,13 +1,14 @@
 export const bikeVersion = [
   {
+    type: 'All',
+  },
+  {
     type: '1.0',
   },
   {
     type: '2.0',
   },
-  {
-    type: 'All',
-  },
+
 ];
 
 export const bikeDemand = [

@@ -3,15 +3,10 @@ import PropTypes from 'prop-types';
 import './card.scss';
 
 export default function Card(props) {
-  const { siteData, setPosition, setInfo } = props;
+  const { siteData, setInfoId } = props;
 
-  const positionArr = (obj) => {
-    setPosition([obj.PositionLat, obj.PositionLon]);
-  };
-
-  const clickCard = (site) => {
-    positionArr(site.Position);
-    setInfo(site);
+  const clickCard = (infoId) => {
+    setInfoId(infoId);
   };
 
   return siteData.map((site, idx) => {
@@ -21,7 +16,7 @@ export default function Card(props) {
       <div
         className="cards-wrapper"
         key={site.ID}
-        onClick={() => clickCard(site)}
+        onClick={() => clickCard(idx)}
         aria-hidden="true"
       >
         <div className="picture" style={pictureStyle}>

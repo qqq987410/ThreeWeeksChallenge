@@ -8,9 +8,13 @@ import request from './request';
 //   $format: 'JSON',
 
 function baseFunc(cityName, ...args) {
-  const apiName = [this.category, this.type, cityName].join('/');
+  const arr = [this.category, this.type];
+  if (cityName) {
+    arr.push(cityName);
+  }
+  const apiName = arr.join('/');
   const query = new URLSearchParams(...args).toString();
-  console.log('AAA=', query);
+  console.log('endpoint: ', apiName, query);
   return request('GET', apiName, query);
 }
 
@@ -33,6 +37,20 @@ const API = {
     fetchStationByCity(cityName, ...args) {
       this.type = 'Station';
       return baseFunc.call(this, cityName, ...args);
+    },
+    fetchAvailabilityByCity(cityName, ...args) {
+      this.type = 'Availability';
+      return baseFunc.call(this, cityName, ...args);
+    },
+    fetchStationNearBy(lat, lon) {
+      this.type = 'Station/NearBy';
+      const obj = { $spatialFilter: `nearby(${lat},${lon}, 500)` };
+      return baseFunc.call(this, null, obj);
+    },
+    fetchAvailabilityNearBy(lat, lon) {
+      this.type = 'Availability/NearBy';
+      const obj = { $spatialFilter: `nearby(${lat},${lon}, 500)` };
+      return baseFunc.call(this, null, obj);
     },
   },
   // bus: {
