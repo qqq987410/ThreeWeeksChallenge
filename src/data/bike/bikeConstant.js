@@ -8,6 +8,7 @@ export const bikeVersion = [
   {
     type: '2.0',
   },
+
 ];
 
 export const bikeDemand = [

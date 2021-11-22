@@ -7,10 +7,13 @@ import Map from '../Map';
 
 import './bike.scss';
 
+import './bike.scss';
+
 export default function Bike() {
   const [cntCity, setCity] = useState(cityList[0].value);
   const [version, setVersion] = useState(bikeVersion[0].type);
   const [demand, setDemand] = useState(bikeDemand[0].type);
+
 
   const [keyword, setKeyWord] = useState('');
   const [siteData, setSiteData] = useState([]);
@@ -83,6 +86,7 @@ export default function Bike() {
     // setPosition([lat, lon]);
   };
 
+
   return (
     <main>
       <Map
@@ -134,6 +138,7 @@ export default function Bike() {
             </option>
           ))}
         </select>
+
         <input
           type="text"
           placeholder="請輸入關鍵字"

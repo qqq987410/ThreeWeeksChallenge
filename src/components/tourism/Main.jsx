@@ -52,6 +52,7 @@ export default function Main() {
 
   return (
     <main>
+
       <Map
         position={position}
         siteData={siteData}
@@ -60,6 +61,7 @@ export default function Main() {
         infoData={siteData[infoId]}
         districts={districtsOptions.districts}
       />
+
 
       <div className="main">
         <div className="navbar">
